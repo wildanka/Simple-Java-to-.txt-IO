@@ -19,8 +19,14 @@ import java.util.logging.Logger;
  */
 public class txtReader {    
     
-    public static void bacaTXT(String lokasiFile, int baris, int kolom){
-        
+   /**
+     * @param lokasiFile
+     * @param baris
+     * @param kolom
+     * @return 
+     */
+    public static double[][] bacaTXT(String lokasiFile, int baris, int kolom){
+        System.out.println("============== TXT READER 2D ==============");
         double[][] arrayHasilTXT = new double[baris][kolom]; //elemen yang dibaca dari .file .txt akan disimpan kedalam 2D array
         
         try {
@@ -31,13 +37,39 @@ public class txtReader {
                     if (scan.hasNextDouble()) {
                         arrayHasilTXT[i][j] = scan.nextDouble();
                     }
-                    System.out.println(i+" "+j+" = "+arrayHasilTXT[i][j]);
+                    //System.out.println(i+" "+j+" = "+arrayHasilTXT[i][j]);
                 }                                
-            }
-            Antarmuka a = new Antarmuka();
-            a.asd = arrayHasilTXT;
+            }            
+            //FeedForwardNN.Wih = arrayHasilTXT;
+            return arrayHasilTXT;
         } catch (FileNotFoundException ex) {
             Logger.getLogger(txtReader.class.getName()).log(Level.SEVERE, null, ex);
-        }        
+        }                
+        return arrayHasilTXT;
+    }
+    
+     /**
+     * @param lokasiFile
+     * @param baris
+     * @param kolom
+     * @return
+     */
+    public static double[] bacaTXT(String lokasiFile, int kolom){
+        System.out.println("============== TXT READER 1D ==============");
+        double[] arrayHasilTXT = new double[kolom]; //elemen yang dibaca dari .file .txt akan disimpan kedalam 2D array
+        
+        try {
+            Scanner scan = new Scanner(new FileInputStream(lokasiFile));                        
+                for (int j = 0; j < kolom; j++) {
+                    if (scan.hasNextDouble()) {
+                        arrayHasilTXT[j] = scan.nextDouble();
+                    }
+                    //System.out.println(j+" = "+arrayHasilTXT[j]);
+                }                                                                   
+            return arrayHasilTXT;
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(txtReader.class.getName()).log(Level.SEVERE, null, ex);
+        }                
+        return arrayHasilTXT;
     }
 }
